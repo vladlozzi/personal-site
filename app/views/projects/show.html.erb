@@ -1,0 +1,14 @@
+<h1>Відомості про проєкт</h1>
+
+<%= render @project %>
+
+<div>
+  <%= link_to "Редагувати відомості про проєкт", edit_project_path(@project) %> |
+  <%= link_to "Назад до переліку проєктів", projects_path %> |
+  <%= link_to "Видалити ", @project,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити проєкт \"#{@project.name}\"?"
+              }
+  %>
+</div>

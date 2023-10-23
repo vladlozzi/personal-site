@@ -1,0 +1,22 @@
+<h1>Мої проєкти</h1>
+
+<div id="projects">
+  <table>
+    <tr>
+      <th>№</th><th>Роки</th><th>Назва проєкту</th><th>Посилання на проєкт</th><th></th>
+    </tr>
+    <% index = 0 %>
+    <% @projects.each do |project| %>
+    <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%= project.years %></td>
+        <td><%= project.name %></td>
+        <td><%= link_to project.href, project.href %></td>
+        <td><%= link_to "Подробиці", project %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to "Додати проєкт", new_project_path %>
