@@ -40,3 +40,13 @@ body {
     margin: 5px 25% 3px 25%;
     text-align: center;
 }
+
+#h1-vlad-lozynskyi, #h1-portfolio {
+    text-align: center;
+}
+#h2-welcome {
+    text-align: center;
+}
+#edit-mode {
+    color: blue;
+}

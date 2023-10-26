@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :set_mode
 
   # GET /projects or /projects.json
   def index
@@ -62,7 +63,14 @@ class ProjectsController < ApplicationController
     def set_project
       @project = Project.find(params[:id])
     end
-
+    def set_mode
+      editor_email = "vladlozynskyi@gmail.com"
+      if request.env['omniauth.auth'].present?
+        @mode = request.env['omniauth.auth'][:info][:email] == editor_email ? "edit" : "view"
+      else
+        @mode = "view"
+      end
+    end
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:years, :href, :name)

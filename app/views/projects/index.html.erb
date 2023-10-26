@@ -1,22 +1,38 @@
 <h1>Мої проєкти</h1>
+<%
+  #editor_email = "vladlozynskyi@gmail.com"
+  #if request.env['omniauth.auth'].present?
+  #  mode = request.env['omniauth.auth'][:info][:email] == editor_email ? "edit" : "view"
+  #else
+  #  mode = "view"
+  #end
+  p @mode
+%>
 
 <div id="projects">
   <table>
     <tr>
-      <th>№</th><th>Роки</th><th>Назва проєкту</th><th>Посилання на проєкт</th><th></th>
+      <th>№</th><th>Роки</th><th>Назва проєкту</th><th>Посилання на проєкт</th>
+      <th>
+        <% if @mode == "edit" %>
+          <span id="edit-mode">Режим редагування</span>
+        <% else %>
+          <%=  link_to "Увійти як редактор", "/auth/google_oauth2" %>
+        <% end %>
+      </th>
     </tr>
     <% index = 0 %>
     <% @projects.each do |project| %>
-    <% index += 1 %>
+      <% index += 1 %>
       <tr>
         <td class="align-right"><%= index %></td>
         <td><%= project.years %></td>
         <td><%= project.name %></td>
         <td><%= link_to project.href, project.href %></td>
-        <td><%= link_to "Подробиці", project %></td>
+        <td><%= @mode == "edit" ? link_to("Подробиці", project) : ""%></td>
       </tr>
     <% end %>
   </table>
 </div>
 
-<%= link_to "Додати проєкт", new_project_path %>
+<%= @mode == "edit" ? link_to("Додати проєкт", new_project_path) : "" %>
