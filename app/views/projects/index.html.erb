@@ -1,23 +1,18 @@
+<div id="to-root">
+  <%=  link_to "На головну сторінку", root_path %>
+</div>
+
 <h1>Мої проєкти</h1>
-<%
-  #editor_email = "vladlozynskyi@gmail.com"
-  #if request.env['omniauth.auth'].present?
-  #  mode = request.env['omniauth.auth'][:info][:email] == editor_email ? "edit" : "view"
-  #else
-  #  mode = "view"
-  #end
-  p @mode
-%>
 
 <div id="projects">
   <table>
     <tr>
       <th>№</th><th>Роки</th><th>Назва проєкту</th><th>Посилання на проєкт</th>
       <th>
-        <% if @mode == "edit" %>
-          <span id="edit-mode">Режим редагування</span>
+        <% if session[:editor] %>
+          <%=  link_to "Вийти", "/auth/exit" %>
         <% else %>
-          <%=  link_to "Увійти як редактор", "/auth/google_oauth2" %>
+          <%=  link_to "Увійти", "/auth/google_oauth2" %>
         <% end %>
       </th>
     </tr>
@@ -29,10 +24,10 @@
         <td><%= project.years %></td>
         <td><%= project.name %></td>
         <td><%= link_to project.href, project.href %></td>
-        <td><%= @mode == "edit" ? link_to("Подробиці", project) : ""%></td>
+        <td><%= session[:editor] ? link_to("Подробиці", project) : "" %></td>
       </tr>
     <% end %>
   </table>
 </div>
 
-<%= @mode == "edit" ? link_to("Додати проєкт", new_project_path) : "" %>
+<%= session[:editor] ? link_to("Додати проєкт", new_project_path) : "" %>

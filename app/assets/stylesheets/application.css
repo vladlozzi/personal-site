@@ -41,12 +41,9 @@ body {
     text-align: center;
 }
 
-#h1-vlad-lozynskyi, #h1-portfolio {
+#h1-vlad-lozynskyi, #h1-portfolio, #h1-contacts {
     text-align: center;
 }
-#h2-welcome {
-    text-align: center;
-}
-#edit-mode {
-    color: blue;
-}
+#h2-welcome, #copyright { text-align: center; font-style: italic; }
+
+#edit-mode { color: blue; }
