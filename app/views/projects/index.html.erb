@@ -1,18 +1,18 @@
 <div id="to-root">
-  <%=  link_to "На головну сторінку", root_path %>
+  <%=  link_to "На головну сторінку | To main page", root_path %>
 </div>
 
-<h1>Мої проєкти</h1>
+<h1>Мої проєкти | My Projects</h1>
 
 <div id="projects">
   <table>
     <tr>
-      <th>№</th><th>Роки</th><th>Назва проєкту</th><th>Посилання на проєкт</th>
+      <th>№</th><th>Роки | Years</th><th>Назва проєкту | Project name</th><th>Посилання на проєкт | Link to project</th>
       <th>
         <% if session[:editor] %>
           <%=  link_to "Вийти", "/auth/exit" %>
         <% else %>
-          <%=  link_to "Увійти", "/auth/google_oauth2" %>
+          <%=  link_to "Увійти | Sign in", "/auth/google_oauth2" %>
         <% end %>
       </th>
     </tr>
